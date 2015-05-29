@@ -15,12 +15,14 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+print("베이스 디렉토리", BASE_DIR)
+print("스태틱과 함께: ", os.path.join(BASE_DIR, "static"))
+print("앱솔루트 패스: ", os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '53(k6*9t)#affaqkr!ir3t@q^h7mc+xg4r+7vis#ntn)&18h)c'
 
 from django.core.exceptions import ImproperlyConfigured
 
@@ -67,7 +69,7 @@ ROOT_URLCONF = 'taskbuster.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,3 +114,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
