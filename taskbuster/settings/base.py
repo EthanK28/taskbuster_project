@@ -34,6 +34,9 @@ def get_env_variable(var_name):
         raise ImproperlyConfigured(error_msg)
 
 SECRET_KEY = get_env_variable('SECRET_KEY')
+# export DJANGO_SETTINGS_MODULE="taskbuster.settings.development"
+# export SECRET_KEY='53(k6*9t)#affaqkr!ir3t@q^h7mc+xg4r+7vis#ntn)&18h)c'
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!

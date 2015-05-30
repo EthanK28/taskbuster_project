@@ -4,12 +4,14 @@
 # TEAM
 
     <name> -- <role> -- <twitter>
+    Eunseok Kang -- Developer -- @eskang
 
 # THANKS
 
     <name>
 
 # TECHNOLOGY COLOPHON
-
+    Django
+    Twitter Bootstrap
     HTML5, CSS3
     jQuery, Modernizr
