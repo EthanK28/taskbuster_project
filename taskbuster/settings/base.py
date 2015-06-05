@@ -15,9 +15,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# print("베이스 디렉토리", BASE_DIR)
-# print("스태틱과 함께: ", os.path.join(BASE_DIR, "static"))
-# print("앱솔루트 패스: ", os.path.dirname(os.path.abspath(__file__)))
+print("베이스 디렉토리", BASE_DIR)
+print("스태틱과 함께: ", os.path.join(BASE_DIR, "static"))
+print("앱솔루트 패스: ", os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -25,16 +25,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 from django.core.exceptions import ImproperlyConfigured
-#
-# def get_env_variable(var_name):
-#     try:
-#         return os.environ[var_name]
-#     except KeyError:
-#         error_msg = "Set the %s environment variable" % var_name
-#         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = "im6~GwUHdX^lPL#^|G{tTCrIKXP,.7,J*7@o_n8@rVOiB>>y@:"
-# SECRET_KEY = get_env_variable('SECRET_KEY')
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_env_variable('SECRET_KEY')
 # export DJANGO_SETTINGS_MODULE="taskbuster.settings.development"
 # export SECRET_KEY='53(k6*9t)#affaqkr!ir3t@q^h7mc+xg4r+7vis#ntn)&18h)c'
 
@@ -55,20 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 )
-
-INSTALLED_APPS+=(
-    # The Django sites framework is required
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    # Login via Google
-    'allauth.socialaccount.providers.google',
-)
-
-SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -98,27 +84,10 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
-                # Required by allauth template tags
-                "django.core.context_processors.request",
-                # allauth specific context processors
-                "allauth.account.context_processors.account",
-                "allauth.socialaccount.context_processors.socialaccount",
             ],
         },
     },
 ]
-
-AUTHENTICATION_BACKENDS = (
-    # Default backend -- used to login by username in Django admin
-    "django.contrib.auth.backends.ModelBackend",
-    # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
-
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = "none"
-SOCIALACCOUNT_QUERY_EMAIL = True
-LOGIN_REDIRECT_URL = "/"
 
 WSGI_APPLICATION = 'taskbuster.wsgi.application'
 
